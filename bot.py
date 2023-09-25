@@ -4,7 +4,8 @@ import mysql.connector
 
 # Configuração do bot
 bot = commands.Bot(command_prefix='!', intents=discord.Intents.all())
-TOKEN = 'SEU_TOKEN_BOT'
+# Substitua 'TOKEN_DO_SEU_BOT' pelo token real do seu bot Discord
+TOKEN = 'TOKEN_DO_SEU_BOT'
 
 # Configuração da conexão com o banco de dados MySQL
 db_connection = mysql.connector.connect(
@@ -43,6 +44,7 @@ async def dchat(ctx):
     # Atualiza o valor no banco de dados
     cursor.execute('UPDATE discord_config SET chat = %s WHERE id = 0', (chat_id,))
     db_connection.commit()
+
 
 @bot.command()
 async def dcargo(ctx, *, cargo_nome: str):
@@ -94,5 +96,4 @@ async def on_message(message):
 
     await bot.process_commands(message)
 
-# Substitua 'TOKEN_DO_SEU_BOT' pelo token real do seu bot Discord
 bot.run(token=TOKEN)
